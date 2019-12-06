@@ -5,6 +5,9 @@ feature "adding new bookmarks" do
         fill_in('title', with: "BBC Good Food")
         click_button("Submit")
         expect(page).to have_link("BBC Good Food", href: "https://www.bbcgoodfood.com/")
-
-    end
+   end
+   scenario "user can cancel the action" do
+     visit 'bookmarks/new'
+     expect(page).to have_link("Cancel action", href: "/bookmarks")
+   end
 end

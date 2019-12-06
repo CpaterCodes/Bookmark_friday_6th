@@ -3,5 +3,9 @@ feature "visiting the landing page" do
         visit '/'
         expect(page).to have_content "Bookmark Manager"
     end
+    scenario "Have several options" do
+      visit '/'
+      expect(page).to have_link("See bookmarks", href: '/bookmarks')
+      expect(page).to have_link("Add bookmark", href: '/bookmarks/new')
+    end
 end
-    
