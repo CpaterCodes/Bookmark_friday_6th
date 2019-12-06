@@ -1,4 +1,4 @@
-
+# frozen_string_literal: true
 ENV['ENVIRONMENT'] = 'test'
 
 # Bring in the contents of the `app.rb` file

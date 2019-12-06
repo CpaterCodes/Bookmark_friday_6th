@@ -15,17 +15,24 @@ describe Bookmark do
       expect(bookmarks[0].url).to eq('http://www.makersacademy.com')
       expect(bookmarks[0].title).to eq('Makers')
       expect(bookmarks[0].id).to eq(verify)
-      end
+    end
   end
 
   describe ".create" do
     it "creates a new bookmark entry" do
-      Bookmark.create(url: "https://www.bbcgoodfood.com/", title: "BBC Good Food")
+      Bookmark.create(url: 'https://www.bbcgoodfood.com/', title: 'BBC Good Food')
 
       expect(Bookmark.all[-1].url).to eq 'https://www.bbcgoodfood.com/'
       expect(Bookmark.all[-1].title).to eq 'BBC Good Food'
-
     end
+  end
 
+  describe ".delete" do
+    it "deletes an existing bookmark entry" do
+      Bookmark.create(url: 'https://www.bbcgoodfood.com/', title: 'BBC Good Food')
+      expect { Bookmark.delete(param: 'https://www.bbcgoodfood.com/') }.to change { Bookmark.all.count}.by(-1)
+      Bookmark.create(url: 'https://www.bbcgoodfood.com/', title: 'BBC Good Food')
+      expect { Bookmark.delete(param: 'BBC Good Food') }.to change { Bookmark.all.count}.by(-1)
+    end
   end
 end
