@@ -11,8 +11,10 @@ describe Bookmark do
       connection.exec("INSERT INTO bookmarks (url, title) VALUES('http://www.google.com', 'Google');")
 
       bookmarks = Bookmark.all
-
-      expect(bookmarks[0].url).to include('http://www.makersacademy.com')
+      verify = bookmarks.first.id
+      expect(bookmarks[0].url).to eq('http://www.makersacademy.com')
+      expect(bookmarks[0].title).to eq('Makers')
+      expect(bookmarks[0].id).to eq(verify)
       end
   end
 
@@ -22,7 +24,7 @@ describe Bookmark do
 
       expect(Bookmark.all[-1].url).to eq 'https://www.bbcgoodfood.com/'
       expect(Bookmark.all[-1].title).to eq 'BBC Good Food'
-      p Bookmark.all
+
     end
 
   end
